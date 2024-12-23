@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 const Footer = ({ isLoaded }) => {
   return (
@@ -24,33 +25,31 @@ const Footer = ({ isLoaded }) => {
         </div>
 
         <div className="flex space-x-8">
-          <a
+          <Link
             href="https://www.linkedin.com/in/h-ayala/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-white transition-colors duration-300"
           >
             <i className="fab fa-linkedin text-2xl"></i>
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://github.com/Eddieayala9965"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-white transition-colors duration-300"
           >
             <i className="fab fa-github text-2xl"></i>
-          </a>
-          <a
+          </Link>
+          <Link
             href="#"
-            className="text-gray-400 hover:text-white transition-colors duration-300 opacity-50 cursor-not-allowed"
+            className="text-gray-400 hover:text-white transition-colors duration-300"
           >
             <i className="fab fa-instagram text-2xl"></i>
-          </a>
+          </Link>
         </div>
       </div>
-      <div className="text-center mt-8 text-sm text-gray-500">
-        © 2025 AE Tech Solutions. All rights reserved.
-      </div>
+      <div className="text-center mt-8 text-sm text-gray-500">©</div>
     </footer>
   );
 };

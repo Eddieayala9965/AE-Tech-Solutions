@@ -20,6 +20,14 @@ const ContactPage = () => {
   useEffect(() => {
     setIsLoaded(true);
     emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+
+    // Log environment variables for debugging
+    console.log("EmailJS Configuration:", {
+      serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      adminTemplateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_ADMIN,
+      customerTemplateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_CUSTOMER,
+      publicKeyExists: !!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+    });
   }, []);
 
   const handleChange = (e) => {
@@ -34,10 +42,10 @@ const ContactPage = () => {
     setStatus({ loading: true, success: false, error: false });
 
     try {
-      
+      // First email - Admin notification
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        "template_khbw8k8",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_ADMIN,
         {
           from_name: formData.from_name,
           user_email: formData.user_email,
@@ -46,14 +54,16 @@ const ContactPage = () => {
         }
       );
 
+      // Second email - Customer auto-reply
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        "template_84vm228",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_CUSTOMER,
         {
-          from_name: formData.from_name,
-          user_email: formData.user_email,
+          to_name: formData.from_name, // This should show in the "Dear" field
+          from_name: formData.from_name, // Client's name
+          user_email: formData.user_email, // Client's email address
           message: formData.message,
-          reply_to: formData.user_email,
+          reply_to: "h.ayala@ae-tech-solutions.com", // Your business email
         }
       );
 
@@ -70,17 +80,13 @@ const ContactPage = () => {
     } catch (error) {
       console.error("Error:", error);
       setStatus({ loading: false, success: false, error: true });
-
-      setTimeout(() => {
-        setStatus((prev) => ({ ...prev, error: false }));
-      }, 5000);
     }
   };
 
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
-    { name: "About Us", href: "/about" },
+    { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
 

@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Navbar({ isLoaded }) {
+const Navbar = ({ isLoaded }) => {
   return (
     <nav className="relative w-full z-10 px-8 py-6 bg-black/50 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -40,4 +40,6 @@ export default function Navbar({ isLoaded }) {
       </div>
     </nav>
   );
-}
+};
+
+export default Navbar;

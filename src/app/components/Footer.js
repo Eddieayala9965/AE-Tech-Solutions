@@ -2,7 +2,7 @@
 
 import React from "react";
 
-export default function Footer({ isLoaded }) {
+const Footer = ({ isLoaded }) => {
   return (
     <footer className="relative z-10 py-8 px-8 border-t border-white/10">
       <div
@@ -25,19 +25,31 @@ export default function Footer({ isLoaded }) {
 
         <div className="flex space-x-8">
           <a
-            href="#"
+            href="https://www.linkedin.com/in/h-ayala/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-gray-400 hover:text-white transition-colors duration-300"
           >
-            <i className="fab fa-linkedin text-xl"></i>
+            <i className="fab fa-linkedin text-2xl"></i>
+          </a>
+          <a
+            href="https://github.com/Eddieayala9965"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition-colors duration-300"
+          >
+            <i className="fab fa-github text-2xl"></i>
           </a>
           <a
             href="#"
-            className="text-gray-400 hover:text-white transition-colors duration-300"
+            className="text-gray-400 hover:text-white transition-colors duration-300 opacity-50 cursor-not-allowed"
           >
-            <i className="fab fa-instagram text-xl"></i>
+            <i className="fab fa-instagram text-2xl"></i>
           </a>
         </div>
       </div>
     </footer>
   );
 }
+
+export default Footer

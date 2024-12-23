@@ -5,7 +5,7 @@ import Link from "next/link";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-export default function HomePage() {
+const HomePage = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
 
@@ -125,4 +125,6 @@ export default function HomePage() {
       <Footer isLoaded={isLoaded} />
     </div>
   );
-}
+};
+
+export default HomePage;

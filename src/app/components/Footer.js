@@ -48,8 +48,11 @@ const Footer = ({ isLoaded }) => {
           </a>
         </div>
       </div>
+      <div className="text-center mt-8 text-sm text-gray-500">
+        © 2025 AE Tech Solutions. All rights reserved.
+      </div>
     </footer>
   );
-}
+};
 
-export default Footer
+export default Footer;

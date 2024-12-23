@@ -16,7 +16,6 @@ const Navbar = ({ isLoaded }) => {
 
         <div className="hidden md:flex space-x-12">
           {[
-            { name: "Work", href: "/" },
             { name: "Services", href: "/services" },
             { name: "About", href: "/about" },
             { name: "Contact", href: "/contact" },

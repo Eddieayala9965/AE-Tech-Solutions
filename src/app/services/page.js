@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ServicesGrid from "../components/ServicesGrid";
 
-export default function Services() {
+const Services = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -36,4 +36,6 @@ export default function Services() {
       <Footer isLoaded={isLoaded} />
     </div>
   );
-}
+};
+
+export default Services;

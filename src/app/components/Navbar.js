@@ -7,15 +7,16 @@ const Navbar = ({ isLoaded }) => {
   return (
     <nav className="relative w-full z-10 px-8 py-6 bg-black/50 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2">
           <div className="w-8 h-8 rounded-full bg-blue-500 animate-pulse" />
           <span className="text-lg font-light tracking-[0.2em]">
             AE TECH SOLUTIONS
           </span>
-        </div>
+        </Link>
 
         <div className="hidden md:flex space-x-12">
           {[
+            { name: "Home", href: "/" },
             { name: "Services", href: "/services" },
             { name: "About", href: "/about" },
             { name: "Contact", href: "/contact" },

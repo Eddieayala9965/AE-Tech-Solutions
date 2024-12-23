@@ -19,6 +19,7 @@ const ContactPage = () => {
 
   useEffect(() => {
     setIsLoaded(true);
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
   }, []);
 
   const handleChange = (e) => {
@@ -33,11 +34,27 @@ const ContactPage = () => {
     setStatus({ loading: true, success: false, error: false });
 
     try {
+      
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-        formData,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        "template_khbw8k8",
+        {
+          from_name: formData.from_name,
+          user_email: formData.user_email,
+          message: formData.message,
+          reply_to: formData.user_email,
+        }
+      );
+
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        "template_84vm228",
+        {
+          from_name: formData.from_name,
+          user_email: formData.user_email,
+          message: formData.message,
+          reply_to: formData.user_email,
+        }
       );
 
       setStatus({ loading: false, success: true, error: false });
@@ -188,7 +205,7 @@ const ContactPage = () => {
                   status.loading ? "opacity-0" : "opacity-100"
                 }`}
               >
-                Send Message
+                {status.loading ? "Sending..." : "Send Message"}
               </span>
               {status.loading && (
                 <div className="absolute inset-0 flex items-center justify-center">

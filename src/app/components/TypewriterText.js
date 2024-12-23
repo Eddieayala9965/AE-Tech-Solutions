@@ -23,3 +23,5 @@ const TypewriterText = ({ text, delay = 0 }) => {
 
   return <span>{displayText}</span>;
 };
+
+export default TypewriterText;

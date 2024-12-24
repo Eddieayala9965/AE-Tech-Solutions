@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AE Tech Solutions - Business Website
 
-## Getting Started
+## Overview
+AE Tech Solutions is a professional technology consulting and solutions company specializing in custom software development, web applications, and digital transformation. Our website showcases our services, expertise, and commitment to delivering innovative solutions for businesses.
 
-First, run the development server:
+## Features
+- 🎯 Modern, responsive design
+- 💻 Interactive UI components
+- 📱 Mobile-first approach
+- 🔒 Secure contact form integration
+- ⚡ Optimized performance
+- 🎨 Professional animations
+- 🔍 SEO optimized
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
+- Next.js 15.1.2
+- React 19.0.0
+- TailwindCSS 3.4.1
+- Framer Motion
+- EmailJS for contact form
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Services
+- Custom Software Development
+- Web Application Development
+- API Development & Integration
+- Automation & Scripting
+- Tech Consulting
+- SaaS Product Development
+- Database Design & Management
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contact
+- Email: h.ayala@ae-tech-solutions.com
+- Phone: (804) 210-5607
+- [LinkedIn](https://www.linkedin.com/in/h-ayala/)
+- [GitHub](https://github.com/Eddieayala9965)
+- [Instagram](https://www.instagram.com/aetechsolutions_/)

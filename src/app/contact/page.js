@@ -21,7 +21,6 @@ const ContactPage = () => {
     setIsLoaded(true);
     emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
 
-    // Log environment variables for debugging
     console.log("EmailJS Configuration:", {
       serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
       adminTemplateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_ADMIN,
@@ -42,7 +41,6 @@ const ContactPage = () => {
     setStatus({ loading: true, success: false, error: false });
 
     try {
-      // Only send the admin notification once
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_ADMIN,
@@ -55,15 +53,14 @@ const ContactPage = () => {
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       );
 
-      // Only send the customer auto-reply once
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_CUSTOMER,
         {
-          to_name: formData.from_name, // Client's name for the "Dear" field
-          user_email: formData.user_email, // This will send to the client's email
+          to_name: formData.from_name,
+          user_email: formData.user_email,
           message: formData.message,
-          reply_to: "h.ayala@ae-tech-solutions.com", // Your email for replies
+          reply_to: "h.ayala@ae-tech-solutions.com",
         }
       );
 

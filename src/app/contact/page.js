@@ -42,7 +42,7 @@ const ContactPage = () => {
     setStatus({ loading: true, success: false, error: false });
 
     try {
-      // First email - Admin notification
+      // Only send the admin notification once
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_ADMIN,
@@ -51,19 +51,19 @@ const ContactPage = () => {
           user_email: formData.user_email,
           message: formData.message,
           reply_to: formData.user_email,
-        }
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       );
 
-      // Second email - Customer auto-reply
+      // Only send the customer auto-reply once
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_CUSTOMER,
         {
-          to_name: formData.from_name, // This should show in the "Dear" field
-          from_name: formData.from_name, // Client's name
-          user_email: formData.user_email, // Client's email address
+          to_name: formData.from_name, // Client's name for the "Dear" field
+          user_email: formData.user_email, // This will send to the client's email
           message: formData.message,
-          reply_to: "h.ayala@ae-tech-solutions.com", // Your business email
+          reply_to: "h.ayala@ae-tech-solutions.com", // Your email for replies
         }
       );
 

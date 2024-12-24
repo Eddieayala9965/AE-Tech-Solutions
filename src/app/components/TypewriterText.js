@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const TypewriterText = ({ text, delay = 0 }) => {
+const TypewriterText = ({ text, delay = 0, className = "" }) => {
   const [displayText, setDisplayText] = useState("");
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const TypewriterText = ({ text, delay = 0 }) => {
     return () => clearTimeout(timeout);
   }, [text, delay]);
 
-  return <span>{displayText}</span>;
+  return <span className={className}>{displayText}</span>;
 };
 
 export default TypewriterText;

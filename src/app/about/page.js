@@ -29,11 +29,14 @@ const About = () => {
             About AE Tech Solutions
           </h1>
 
-          <div className="flex flex-col gap-8 sm:gap-16">
-            <div className="w-full">
+          {/* Changed this div to use grid on larger screens */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-center">
+            {/* CodeDisplay container */}
+            <div className="w-full max-w-xl mx-auto lg:mx-0">
               <CodeDisplay isLoaded={isLoaded} />
             </div>
 
+            {/* Text content container */}
             <div
               className="space-y-6 sm:space-y-8"
               style={{

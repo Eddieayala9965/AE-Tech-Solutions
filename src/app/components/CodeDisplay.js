@@ -44,7 +44,7 @@ const CodeDisplay = ({ isLoaded }) => {
 
   return (
     <div
-      className="relative aspect-square bg-[#1E1E1E] rounded-lg overflow-hidden p-6"
+      className="relative bg-[#1E1E1E] rounded-lg overflow-hidden p-3 sm:p-6 w-full aspect-[4/5] sm:aspect-square"
       style={{
         opacity: isLoaded ? 1 : 0,
         transform: isLoaded ? "translateX(0)" : "translateX(-2rem)",
@@ -57,7 +57,7 @@ const CodeDisplay = ({ isLoaded }) => {
           {matrixChars.map((char) => (
             <div
               key={char.id}
-              className="absolute text-blue-500 text-xs"
+              className="absolute text-blue-500 text-[8px] sm:text-xs"
               style={{
                 left: char.left,
                 animation: "matrix 10s linear infinite",
@@ -70,33 +70,33 @@ const CodeDisplay = ({ isLoaded }) => {
         </div>
       )}
 
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="space-y-6 font-mono w-full max-w-md">
+      <div className="absolute inset-0 flex items-center justify-center px-2 sm:px-4">
+        <div className="space-y-4 sm:space-y-6 font-mono w-full max-w-md">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1 sm:space-x-2">
               {["bg-blue-500", "bg-green-500", "bg-yellow-500"].map(
                 (color, index) => (
                   <div
                     key={index}
-                    className={`w-3 h-3 ${color} rounded-full animate-pulse`}
+                    className={`w-2 h-2 sm:w-3 sm:h-3 ${color} rounded-full animate-pulse`}
                     style={{ animationDelay: `${index * 0.5}s` }}
                   />
                 )
               )}
             </div>
-            <span className="text-blue-400">
+            <span className="text-blue-400 text-xs sm:text-sm">
               <TypewriterText text="System Initialization..." delay={500} />
             </span>
           </div>
 
-          <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+          <div className="w-full bg-gray-800 h-1.5 sm:h-2 rounded-full overflow-hidden">
             <div
               className="h-full bg-blue-500 transition-all duration-500"
               style={{ width: `${(currentStep / 5) * 100}%` }}
             />
           </div>
 
-          <div className="space-y-2 text-sm">
+          <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
             {statusMessages.map((text, index) => (
               <div
                 key={index}
@@ -113,14 +113,14 @@ const CodeDisplay = ({ isLoaded }) => {
           </div>
 
           <div
-            className={`space-y-2 transition-opacity duration-500 ${
+            className={`space-y-1.5 sm:space-y-2 transition-opacity duration-500 ${
               currentStep >= 5 ? "opacity-100" : "opacity-0"
             }`}
           >
             {systemMetrics.map(({ label, value }, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between text-xs"
+                className="flex items-center justify-between text-[10px] sm:text-xs"
               >
                 <span className="text-gray-400">{label}</span>
                 <span className="text-blue-400">{value}</span>
@@ -129,7 +129,7 @@ const CodeDisplay = ({ isLoaded }) => {
           </div>
 
           {currentStep >= 5 && (
-            <div className="text-green-400 font-bold text-center animate-pulse">
+            <div className="text-green-400 font-bold text-center animate-pulse text-xs sm:text-sm">
               <TypewriterText
                 text="System Ready - Transforming Business Through Technology"
                 delay={10000}

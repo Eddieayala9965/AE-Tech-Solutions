@@ -16,10 +16,10 @@ const Services = () => {
     <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar isLoaded={isLoaded} />
 
-      <main className="flex-grow px-8 py-16">
+      <main className="flex-grow px-4 sm:px-8 py-12 sm:py-16">
         <div className="max-w-7xl mx-auto">
           <h1
-            className="text-5xl font-light mb-16 text-center text-white"
+            className="text-3xl sm:text-4xl md:text-5xl font-light mb-8 sm:mb-16 text-center text-white"
             style={{
               transform: isLoaded ? "translateY(0)" : "translateY(2rem)",
               opacity: isLoaded ? 1 : 0,

@@ -23,13 +23,13 @@ const HomePage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-black text-white overflow-hidden">
       <div
-        className="fixed inset-0 opacity-20"
+        className="fixed inset-0 opacity-20 pointer-events-none"
         style={{
           background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.3) 0%, rgba(0, 0, 0, 0) 50%)`,
         }}
       />
 
-      <div className="fixed inset-0 opacity-10">
+      <div className="fixed inset-0 opacity-10 pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
@@ -42,20 +42,20 @@ const HomePage = () => {
 
       <Navbar isLoaded={isLoaded} />
 
-      <main className="flex-grow flex items-center justify-center px-8 relative">
+      <main className="flex-grow flex items-center justify-center px-4 sm:px-8 relative">
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <div className="w-[800px] h-[800px] border border-white/20 rounded-full animate-[spin-slow_20s_linear_infinite]" />
-          <div className="absolute w-[600px] h-[600px] border border-white/20 rounded-full animate-[spin-slower_30s_linear_infinite]" />
-          <div className="absolute w-[400px] h-[400px] border border-white/20 rounded-full animate-[spin-reverse_25s_linear_infinite]" />
+          <div className="w-[300px] sm:w-[800px] h-[300px] sm:h-[800px] border border-white/20 rounded-full animate-[spin-slow_20s_linear_infinite]" />
+          <div className="absolute w-[200px] sm:w-[600px] h-[200px] sm:h-[600px] border border-white/20 rounded-full animate-[spin-slower_30s_linear_infinite]" />
+          <div className="absolute w-[150px] sm:w-[400px] h-[150px] sm:h-[400px] border border-white/20 rounded-full animate-[spin-reverse_25s_linear_infinite]" />
         </div>
 
         <div className="max-w-7xl w-full relative z-10">
-          <div className="absolute -top-20 right-20 w-20 h-20 bg-blue-500/20 rounded-full blur-xl animate-[float_6s_ease-in-out_infinite] pointer-events-none" />
-          <div className="absolute top-40 -left-10 w-32 h-32 bg-cyan-500/20 rounded-full blur-xl animate-[float-delay_8s_ease-in-out_infinite] pointer-events-none" />
+          <div className="absolute -top-20 right-20 w-20 h-20 bg-blue-500/20 rounded-full blur-xl animate-[float_6s_ease-in-out_infinite] pointer-events-none hidden sm:block" />
+          <div className="absolute top-40 -left-10 w-32 h-32 bg-cyan-500/20 rounded-full blur-xl animate-[float-delay_8s_ease-in-out_infinite] pointer-events-none hidden sm:block" />
 
-          <div className="space-y-12">
-            <div className="space-y-8 max-w-4xl">
-              <h1 className="text-5xl md:text-7xl font-light leading-relaxed tracking-normal pb-2">
+          <div className="space-y-8 sm:space-y-12">
+            <div className="space-y-6 sm:space-y-8 max-w-4xl">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-light leading-tight sm:leading-relaxed tracking-normal pb-2">
                 <span className="block overflow-hidden">
                   <span
                     className="block py-1"
@@ -89,7 +89,7 @@ const HomePage = () => {
               </h1>
 
               <p
-                className="text-xl text-gray-400 max-w-2xl"
+                className="text-lg sm:text-xl text-gray-400 max-w-2xl"
                 style={{
                   transform: isLoaded ? "translateY(0)" : "translateY(2rem)",
                   opacity: isLoaded ? 1 : 0,
@@ -113,7 +113,7 @@ const HomePage = () => {
             >
               <Link
                 href="/services"
-                className="px-8 py-4 border border-white/20 rounded-full text-sm tracking-wider hover:bg-white/10 transition-all duration-300"
+                className="w-full sm:w-auto text-center px-6 sm:px-8 py-4 border border-white/20 rounded-full text-sm tracking-wider hover:bg-white/10 transition-all duration-300"
               >
                 Learn More
               </Link>

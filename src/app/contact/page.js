@@ -6,6 +6,8 @@ import Link from "next/link";
 
 const ContactPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [formData, setFormData] = useState({
     from_name: "",
     user_email: "",
@@ -21,12 +23,12 @@ const ContactPage = () => {
     setIsLoaded(true);
     emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
 
-    console.log("EmailJS Configuration:", {
-      serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-      adminTemplateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_ADMIN,
-      customerTemplateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_CUSTOMER,
-      publicKeyExists: !!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
-    });
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleChange = (e) => {
@@ -49,8 +51,7 @@ const ContactPage = () => {
           user_email: formData.user_email,
           message: formData.message,
           reply_to: formData.user_email,
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        }
       );
 
       await emailjs.send(
@@ -65,11 +66,7 @@ const ContactPage = () => {
       );
 
       setStatus({ loading: false, success: true, error: false });
-      setFormData({
-        from_name: "",
-        user_email: "",
-        message: "",
-      });
+      setFormData({ from_name: "", user_email: "", message: "" });
 
       setTimeout(() => {
         setStatus((prev) => ({ ...prev, success: false }));
@@ -89,59 +86,102 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
-      <nav className="w-full z-10 px-8 py-6 bg-black/50 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-lg font-light tracking-[0.2em]">
-              AE TECH SOLUTIONS
-            </span>
-          </Link>
+      {/* Updated Responsive Navbar */}
+      <nav
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          scrolled || isMenuOpen
+            ? "bg-black/90 backdrop-blur-md"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded-full bg-blue-500 animate-pulse" />
+              <span className="text-sm sm:text-lg font-light tracking-[0.2em] hidden sm:block">
+                AE TECH SOLUTIONS
+              </span>
+            </Link>
 
-          <div className="hidden md:flex space-x-12">
-            {navItems.map((item, index) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-sm tracking-wide relative group overflow-hidden"
-                style={{
-                  transform: isLoaded ? "translateY(0)" : "translateY(100%)",
-                  opacity: isLoaded ? 1 : 0,
-                  transition: "all 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
-                  transitionDelay: `${index * 100}ms`,
-                }}
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex space-x-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-sm tracking-wide relative group overflow-hidden text-gray-300 hover:text-white transition-colors duration-300"
+                >
+                  {item.name}
+                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-blue-500 transform scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100" />
+                </Link>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                {item.name}
-                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-blue-500 transform scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100" />
-              </Link>
-            ))}
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          <div
+            className={`md:hidden transition-all duration-300 ease-in-out ${
+              isMenuOpen
+                ? "opacity-100 max-h-64"
+                : "opacity-0 max-h-0 pointer-events-none"
+            } overflow-hidden`}
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </nav>
 
-      <main className="flex-grow px-8 py-20">
+      {/* Main Content */}
+      <main className="flex-grow px-4 sm:px-8 py-32 mt-16">
         <div className="max-w-3xl mx-auto w-full">
-          <h1
-            className="text-4xl md:text-6xl font-light mb-16 text-center"
-            style={{
-              opacity: isLoaded ? 1 : 0,
-              transform: isLoaded ? "translateY(0)" : "translateY(2rem)",
-              transition: "all 1s cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          >
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-light mb-8 sm:mb-16 text-center">
             Contact Us
           </h1>
 
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-8"
-            style={{
-              opacity: isLoaded ? 1 : 0,
-              transform: isLoaded ? "translateY(0)" : "translateY(2rem)",
-              transition: "all 1s cubic-bezier(0.16, 1, 0.3, 1)",
-              transitionDelay: "0.2s",
-            }}
-          >
+          {/* Contact Form */}
+          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+            {/* Form fields remain the same */}
             <div className="space-y-4">
               <div>
                 <label
@@ -201,19 +241,12 @@ const ContactPage = () => {
             <button
               type="submit"
               disabled={status.loading}
-              className="relative w-full px-8 py-4 bg-blue-500 text-white rounded-lg text-sm tracking-wider hover:bg-blue-600 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 overflow-hidden"
+              className="relative w-full px-8 py-4 bg-blue-500 text-white rounded-lg text-sm tracking-wider hover:bg-blue-600 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100"
             >
-              <span
-                className={`transition-opacity duration-300 ${
-                  status.loading ? "opacity-0" : "opacity-100"
-                }`}
-              >
-                {status.loading ? "Sending..." : "Send Message"}
-              </span>
-              {status.loading && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                </div>
+              {status.loading ? (
+                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto" />
+              ) : (
+                "Send Message"
               )}
             </button>
 
@@ -232,17 +265,10 @@ const ContactPage = () => {
         </div>
       </main>
 
-      <footer className="py-8 px-8 border-t border-white/10">
-        <div
-          className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0"
-          style={{
-            opacity: isLoaded ? 1 : 0,
-            transform: isLoaded ? "translateY(0)" : "translateY(1rem)",
-            transition: "all 1s cubic-bezier(0.16, 1, 0.3, 1)",
-            transitionDelay: "0.6s",
-          }}
-        >
-          <div className="space-y-2">
+      {/* Footer */}
+      <footer className="py-8 px-4 sm:px-8 border-t border-white/10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+          <div className="space-y-2 text-center md:text-left">
             <p className="text-sm text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer">
               h.ayala@ae-tech-solutions.com
             </p>
@@ -258,7 +284,7 @@ const ContactPage = () => {
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors duration-300"
             >
-              <i className="fab fa-linkedin text-2xl"></i>
+              <i className="fab fa-linkedin text-xl sm:text-2xl"></i>
             </Link>
             <Link
               href="https://github.com/Eddieayala9965"
@@ -266,17 +292,17 @@ const ContactPage = () => {
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors duration-300"
             >
-              <i className="fab fa-github text-2xl"></i>
+              <i className="fab fa-github text-xl sm:text-2xl"></i>
             </Link>
             <Link
               href="/"
               className="text-gray-400 hover:text-white transition-colors duration-300"
             >
-              <i className="fab fa-instagram text-2xl"></i>
+              <i className="fab fa-instagram text-xl sm:text-2xl"></i>
             </Link>
           </div>
         </div>
-        <div className="text-center mt-8 text-sm text-gray-500">
+        <div className="text-center mt-8 text-xs sm:text-sm text-gray-500">
           © 2025 AE Tech Solutions. All rights reserved.
         </div>
       </footer>

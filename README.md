@@ -14,7 +14,6 @@ AE Tech Solutions is a professional technology consulting and solutions company 
 
 ## Tech Stack
 - Next.js 15.1.2
-- React 19.0.0
 - TailwindCSS 3.4.1
 - Framer Motion
 - EmailJS for contact form

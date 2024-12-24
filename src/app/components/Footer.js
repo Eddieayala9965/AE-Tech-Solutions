@@ -16,12 +16,18 @@ const Footer = ({ isLoaded }) => {
         }}
       >
         <div className="space-y-2 text-center md:text-left">
-          <p className="text-sm text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer">
+          <a
+            href="mailto:h.ayala@ae-tech-solutions.com"
+            className="text-sm text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer block"
+          >
             h.ayala@ae-tech-solutions.com
-          </p>
-          <p className="text-sm text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer">
+          </a>
+          <a
+            href="tel:8042105607"
+            className="text-sm text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer block"
+          >
             (804) 210-5607
-          </p>
+          </a>
         </div>
 
         <div className="flex space-x-8">

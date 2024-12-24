@@ -42,7 +42,7 @@ const Footer = ({ isLoaded }) => {
             <i className="fab fa-github text-xl sm:text-2xl"></i>
           </Link>
           <Link
-            href="/"
+            href="https://www.instagram.com/aetechsolutions_/?hl=en"
             className="text-gray-400 hover:text-white transition-colors duration-300"
           >
             <i className="fab fa-instagram text-xl sm:text-2xl"></i>

@@ -86,7 +86,6 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
-      {/* Updated Responsive Navbar */}
       <nav
         className={`fixed w-full z-50 transition-all duration-300 ${
           scrolled || isMenuOpen
@@ -96,7 +95,6 @@ const ContactPage = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-full bg-blue-500 animate-pulse" />
               <span className="text-sm sm:text-lg font-light tracking-[0.2em] hidden sm:block">
@@ -104,7 +102,6 @@ const ContactPage = () => {
               </span>
             </Link>
 
-            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               {navItems.map((item) => (
                 <Link
@@ -118,7 +115,6 @@ const ContactPage = () => {
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
@@ -148,7 +144,6 @@ const ContactPage = () => {
             </button>
           </div>
 
-          {/* Mobile Menu */}
           <div
             className={`md:hidden transition-all duration-300 ease-in-out ${
               isMenuOpen
@@ -172,16 +167,13 @@ const ContactPage = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
       <main className="flex-grow px-4 sm:px-8 py-32 mt-16">
         <div className="max-w-3xl mx-auto w-full">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-light mb-8 sm:mb-16 text-center">
             Contact Us
           </h1>
 
-          {/* Contact Form */}
           <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
-            {/* Form fields remain the same */}
             <div className="space-y-4">
               <div>
                 <label

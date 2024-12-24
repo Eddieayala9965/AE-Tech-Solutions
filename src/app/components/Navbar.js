@@ -25,7 +25,6 @@ const Navbar = ({ isLoaded }) => {
 
   return (
     <>
-      {/* Add a spacer div to push content down */}
       <div className="h-16"></div>
 
       <nav
